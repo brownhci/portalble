@@ -37,6 +37,7 @@ public class HelloworldMessage : MonoBehaviour
     bool audio_played_check = false;
 
     private bool KEY_TRIGGERED = false;
+    private bool PHONE_MSG_TRIGGERED = false;
 
     private bool next_clicked = false;
     private GameObject next_button;
@@ -44,6 +45,9 @@ public class HelloworldMessage : MonoBehaviour
 
     [SerializeField]
     private GameObject introInfo;
+
+    [SerializeField]
+    private GameObject pinchMessage;
 
     [SerializeField]
     private GameObject planet;
@@ -98,6 +102,7 @@ public class HelloworldMessage : MonoBehaviour
             {
                 p_instruction.text = "Try Pinch";
                 introInfo.SetActive(false);
+                pinchMessage.SetActive(false);
                 if (!audio_played_check)
                 {
                     planet_audioManager.Play("Beep");
@@ -108,6 +113,11 @@ public class HelloworldMessage : MonoBehaviour
             {
                 p_instruction.text = "Feel it with your hand";
                 audio_played_check = false;
+                if (!PHONE_MSG_TRIGGERED)
+                {
+                    pinchMessage.SetActive(true);
+                    PHONE_MSG_TRIGGERED = true;
+                }
             }
         }
         else
